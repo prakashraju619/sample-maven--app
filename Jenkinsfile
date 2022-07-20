@@ -1,6 +1,7 @@
 pipeline {
  
 agent any
+ tools {name: "mvn-jenkins" type: "maven"}
 
 
   stages {
@@ -12,23 +13,8 @@ agent any
       }
     }
 
-    stage('Image Build') {
-      steps {
-        script {
-           
-        }
-
-      }
-    }
-
-    stage('Docker  Run') {
-      steps {
-        script {
-          
-        }
-
-      }
-    }
+   
+    
    
    
     }
