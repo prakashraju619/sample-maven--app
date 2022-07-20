@@ -1,7 +1,7 @@
 pipeline {
  
 agent any
- tools {name: "mvn-jenkins", type: "maven"}
+
 
   stages {
     stage('Cloning Git') {
