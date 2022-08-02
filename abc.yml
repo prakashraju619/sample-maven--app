@@ -1,0 +1,53 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  CloudFormation template for Fluidra account to deploy services subnet
+Parameters:
+  VPCStackName:
+    Description: VPC Stack Name
+    Type: String
+    Default: EMEA-IOT-ireland-dev-vpc-stack01
+  subnetname:
+    Description: Enter the name for subnet
+    Type: String
+    Default: ireland-dev-vpc01-services-subnet02-1b
+  subnetcidr:
+    Description: Enter the IP range (CIDR notation) for the subnet
+    Type: String
+    Default: 10.201.64.128/26
+  EnvironmentType:
+    Description: Environment type
+    Type: String
+    Default: dev
+    AllowedValues:
+      - prod
+      - test
+      - dev
+      - stage
+      - tool
+      - security
+      - security breakglass
+      - network
+      - sandbox
+      - shared service
+Resources:
+  subnet:
+    Type: 'AWS::EC2::Subnet'
+    Properties:
+      VpcId:
+        'Fn::ImportValue': !Sub '${VPCStackName}-VPCID'
+      AvailabilityZone: !Select 
+        - 1
+        - !GetAZs ''
+      CidrBlock: !Ref subnetcidr
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: Name
+          Value: !Ref subnetname
+        - Key: Function
+          Value: Network
+        - Key: DepartmentName
+          Value: Fluidra_IOT_EMEA
+        - Key: Environment
+          Value: !Ref EnvironmentType
+        - Key: Service Name
+          Value: Subnet
