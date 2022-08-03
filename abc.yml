@@ -31,7 +31,7 @@ Parameters:
       - shared service
 Resources:
   subnet:
-    Type: 'AWS::EC2::Subnet
+    Type: 'AWS::EC2::Subnet'
     Properties:
       VpcId:
         'Fn::ImportValue': !Sub '${VPCStackName}-VPCID'
