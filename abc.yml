@@ -5,7 +5,7 @@ Parameters:
   VPCStackName:
     Description: VPC Stack Name
     Type: String
-    Default: EMEA-IOT-ireland-dev-vpc-stack01
+    Default: stack01
   subnetname:
     Description: Enter the name for subnet
     Type: String
@@ -31,7 +31,7 @@ Parameters:
       - shared service
 Resources:
   subnet:
-    Type: 'AWS::EC2::Subnet'
+    Type: 'AWS::EC2::Subnet
     Properties:
       VpcId:
         'Fn::ImportValue': !Sub '${VPCStackName}-VPCID'
